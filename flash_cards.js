@@ -49,9 +49,10 @@ cldn.FlashCards.prototype = {
     var question = this.questions[this.currentIndex];
 
     $('#main').empty();
-    var el = $(this.template).appendTo('#main');
-    $(el).find('#question').text(question.text);
-    $(el).find('#audio source').attr('src', question.audioPath);
+    var $el = $(this.template).appendTo('#main');
+    $el.find('#question').text(question.text);
+    $el.find('#audio source').attr('src', question.audioPath);
+    $el.find('#number').text(this.questions.length+' remaining');
   },
 
   gotIt: function() {
