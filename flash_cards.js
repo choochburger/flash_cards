@@ -32,23 +32,46 @@ cldn.FlashCards = function() {
   });
 
   // current index
-  this.currentIndex = 0;
+  this.currentIndex = -1;
 
-  // init next btn
   $('#next-btn').click(this.nextQuestion);
+  $('#got-it-btn').click(this.gotIt);
+  $('#randomize-btn').click(this.randomizeQuestions);
+
+  this.nextQuestion();
 }
 
 cldn.FlashCards.prototype = {
 
   nextQuestion: function() {
+    this.currentIndex+1 >= this.questions.length ? this.currentIndex = 0 : this.currentIndex++;
+
     var question = this.questions[this.currentIndex];
 
     $('#main').empty();
     var el = $(this.template).appendTo('#main');
     $(el).find('#question').text(question.text);
     $(el).find('#audio source').attr('src', question.audioPath);
+  },
 
-    this.currentIndex++;
+  gotIt: function() {
+    // remove question
+    this.questions = this.questions.slice(0, this.currentIndex).concat(this.questions.slice(this.currentIndex+1));
+
+    if (this.questions.length == 0) {
+      $('#main').empty();
+      $('#buttons').empty();
+      $('<h1>Nice job!<h1>').appendTo('#main');
+    } else {
+      this.currentIndex--;
+      this.nextQuestion();
+    }
+  },
+
+  randomizeQuestions: function() {
+    this.questions = _.shuffle(this.questions);
+    this.currentIndex = -1;
+    this.nextQuestion();
   }
 
 };
