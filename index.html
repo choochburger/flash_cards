@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="flash_cards.css" type="text/css" media="all"/>
+  <script src="jquery.min.js" type="text/javascript"></script>
+  <script src="underscore-min.js" type="text/javascript"></script>
+  <script src="flash_cards.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div id="card-template" class="hidden">
+    <div class="card">
+      <h1 id="question"></h1>
+      <audio id="audio" controls="controls">
+        <source type="audio/mpeg"/>
+      </audio>
+    </div>
+  </div>
+
+  <div id="main"></div>
+  <div id="buttons">
+    <a href="#" id="next-btn" class="button">Next</a>
+  </div>
+
+</body>
+
+</html>
