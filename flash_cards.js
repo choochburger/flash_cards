@@ -21,11 +21,11 @@ cldn.FlashCards = function() {
   _.each(categories, function(c, key) {
     _.each(c, function(i, index) {
       var question = {};
-      // sounds go in dir ROOT/{{key}}/
       var indexStr = index+1+'';
       // zero pad indexStr for single digits
       indexStr = indexStr.length > 1 ? indexStr : '0'+indexStr;
 
+      // sounds go in dir ROOT/{{key}}/
       var audioPath = key+'/'+indexStr+'.mp3';
       that.questions.push(new cldn.Question(i, audioPath));
     });
